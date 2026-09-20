@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Orden de Trabajo</title>
+    <title>Orden de Producción - Interplanet</title>
+    
+    <!-- Favicon Oficial -->
+    <link rel="icon" type="image/png" href="https://blogger.googleusercontent.com/img/a/AVvXsEjoMA7hth4_jxo-6tFTk3rof9svvgn8Ca6WAYwq3HpcUQbAqn477vHaHxRR1elGUMBJiJ-Okm7RwNHiG-UqJ1ze4AJKBIOckEwIVNu0Dg9GPU50yzzFQx-lHAJFt1-19FopWSdeftsHgyIheH_rYBtBDes03Kh_6kxhFctsf-96WCA8_Qi0D0p02EX3x2qp">
+
     <style>
         html, body {
             margin: 0;
@@ -11,7 +15,7 @@
             width: 100vw;
             height: 100vh;
             overflow: hidden;
-            background-color: #f8fafc; /* Fondo claro para la vista del proveedor */
+            background-color: #f1f5f9; /* Color de fondo claro coincidente con el modal */
         }
         iframe {
             width: 100%;
@@ -19,26 +23,56 @@
             border: none;
             display: block;
         }
+        /* Pantalla de carga mientras se conecta el iframe */
+        #loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #64748b;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-    <iframe id="app-frame" title="Orden de Trabajo"></iframe>
+    
+    <!-- Loader visual que desaparece cuando carga el iframe -->
+    <div id="loader">
+        <svg width="40" height="40" viewBox="0 0 50 50" style="animation: spin 1s linear infinite;">
+            <circle cx="25" cy="25" r="20" fill="none" stroke="#005490" stroke-width="4" stroke-dasharray="31.4 31.4" stroke-linecap="round"></circle>
+        </svg>
+        <p style="margin-top: 10px;">Conectando al servidor...</p>
+    </div>
+    
+    <style>
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+    </style>
+
+    <iframe id="app-frame" title="Orden de Trabajo" style="opacity: 0; transition: opacity 0.5s;"></iframe>
 
     <script>
-        // 1. Obtener el ID de la URL actual (ej: ?id=TRAB-00001)
+        // 1. Obtener el ID de la URL que envió WhatsApp (ej: ?id=TRAB-00006)
         const urlParams = new URLSearchParams(window.location.search);
         const trabajoId = urlParams.get('id');
 
-        // 2. Construir la URL real de tu Google Apps Script
-        // IMPORTANTE: Reemplaza esto con tu URL real de Apps Script terminada en /exec
+        // 2. URL de tu Web App de Google Apps Script
         const urlAppsScript = "https://script.google.com/macros/s/AKfycbwUfwojpxaY23eVyOUfGzwzyntaEfTiWAzPMSiH2BgzQyiB6ARMLIvShke1ZcILy_sUaA/exec";
 
-        // 3. Si hay ID, inyectarlo en el iframe para que Apps Script devuelva la vista del proveedor
+        // 3. Inyectar el ID en el iframe
         if (trabajoId) {
-            document.getElementById('app-frame').src = urlAppsScript + "?id=" + trabajoId;
+            const frame = document.getElementById('app-frame');
+            // Le pasamos el parámetro ?id= al iframe para que Apps Script lo reciba
+            frame.src = urlAppsScript + "?id=" + trabajoId;
+            
+            // Cuando el iframe termina de cargar, ocultamos el loader y mostramos el iframe
+            frame.onload = function() {
+                document.getElementById('loader').style.display = 'none';
+                frame.style.opacity = '1';
+            };
         } else {
-            // Si alguien entra sin ID, mostrar un mensaje de error simple
-            document.body.innerHTML = "<h2 style='text-align:center; margin-top:50px; font-family:sans-serif;'>Enlace inválido o incompleto.</h2>";
+            // Error si no viene ID
+            document.getElementById('loader').innerHTML = "<h2 style='color:#dc2626;'>Enlace incompleto</h2><p>Falta el número de orden (ID).</p>";
         }
     </script>
 </body>
