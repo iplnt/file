@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Orden de Trabajo</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #f8fafc; /* Fondo claro para la vista del proveedor */
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <iframe id="app-frame" title="Orden de Trabajo"></iframe>
+
+    <script>
+        // 1. Obtener el ID de la URL actual (ej: ?id=TRAB-00001)
+        const urlParams = new URLSearchParams(window.location.search);
+        const trabajoId = urlParams.get('id');
+
+        // 2. Construir la URL real de tu Google Apps Script
+        // IMPORTANTE: Reemplaza esto con tu URL real de Apps Script terminada en /exec
+        const urlAppsScript = "https://script.google.com/macros/s/AKfycbwUfwojpxaY23eVyOUfGzwzyntaEfTiWAzPMSiH2BgzQyiB6ARMLIvShke1ZcILy_sUaA/exec";
+
+        // 3. Si hay ID, inyectarlo en el iframe para que Apps Script devuelva la vista del proveedor
+        if (trabajoId) {
+            document.getElementById('app-frame').src = urlAppsScript + "?id=" + trabajoId;
+        } else {
+            // Si alguien entra sin ID, mostrar un mensaje de error simple
+            document.body.innerHTML = "<h2 style='text-align:center; margin-top:50px; font-family:sans-serif;'>Enlace inválido o incompleto.</h2>";
+        }
+    </script>
+</body>
+</html>
