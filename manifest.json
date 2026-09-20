@@ -1,0 +1,21 @@
+{
+  "name": "IpFILE",
+  "short_name": "Interplanet",
+  "description": "Sistema de gestión de impresión y finanzas.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#005490",
+  "icons": [
+    {
+      "src": "https://blogger.googleusercontent.com/img/a/AVvXsEjoMA7hth4_jxo-6tFTk3rof9svvgn8Ca6WAYwq3HpcUQbAqn477vHaHxRR1elGUMBJiJ-Okm7RwNHiG-UqJ1ze4AJKBIOckEwIVNu0Dg9GPU50yzzFQx-lHAJFt1-19FopWSdeftsHgyIheH_rYBtBDes03Kh_6kxhFctsf-96WCA8_Qi0D0p02EX3x2qp",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://blogger.googleusercontent.com/img/a/AVvXsEjoMA7hth4_jxo-6tFTk3rof9svvgn8Ca6WAYwq3HpcUQbAqn477vHaHxRR1elGUMBJiJ-Okm7RwNHiG-UqJ1ze4AJKBIOckEwIVNu0Dg9GPU50yzzFQx-lHAJFt1-19FopWSdeftsHgyIheH_rYBtBDes03Kh_6kxhFctsf-96WCA8_Qi0D0p02EX3x2qp",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
