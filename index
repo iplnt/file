@@ -2,58 +2,50 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>IPFILE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>IP RECARGAS</title>
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#f4f7f9">
+
+    <link rel="icon" type="image/png" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgN_g1PmqgcVGMXjFcks6SIpN7ETd1kWlHZV8gvBASzmF2zplSrP8C4iLCxxpJDs2632118rvorJns_GComzGcdEI5OWglPEbmPduUOsX6i_3_UIwADCQ45HihYVXi5hs4aJWigEzWN779EPor-YGTuKSi-up1gjSSHLyMH7GJRnhrS6di86Eb-sVC4mZLG/s320-rw/favicon.png">
     
-    <!-- Favicon Oficial -->
-    <link rel="icon" type="image/png" href="https://blogger.googleusercontent.com/img/a/AVvXsEjoMA7hth4_jxo-6tFTk3rof9svvgn8Ca6WAYwq3HpcUQbAqn477vHaHxRR1elGUMBJiJ-Okm7RwNHiG-UqJ1ze4AJKBIOckEwIVNu0Dg9GPU50yzzFQx-lHAJFt1-19FopWSdeftsHgyIheH_rYBtBDes03Kh_6kxhFctsf-96WCA8_Qi0D0p02EX3x2qp">
-    
-    <!-- Conexión con el archivo PWA -->
     <link rel="manifest" href="manifest.json">
 
     <style>
-        /* Reseteo para que la app ocupe el 100% de la pantalla sin bordes */
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100vw;
-            height: 100vh;
-            overflow: hidden; /* Evita la aparición de un doble scrollbar */
-            background-color: #0f172a; /* Fondo azul oscuro de Interplanet mientras carga */
-        }
-
-        /* Iframe a pantalla completa */
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
-        }
-    </style>
+    body, html { 
+        margin: 0; 
+        padding: 0; 
+        height: 100vh; 
+        width: 100vw; 
+        overflow: hidden; 
+        background-color: #f4f7f9;
+    }
+    iframe { 
+        position: absolute; 
+        top: 0; 
+        left: 0; 
+        width: 100%; 
+        height: 100%; 
+        border: none;
+        /* Esto ayuda a que el scroll sea fluido en iPhone */
+        -webkit-overflow-scrolling: touch;
+    }
+</style>
 </head>
 <body>
+    <iframe src="https://script.google.com/macros/s/AKfycbxzOy-iR_syc5QgsaaM7P38eVwF2FHmSyDH9Wa2Q8lzRiFVoEQkujHpavXfjp6IO16i/exec"></iframe>
 
-    <!-- Conexión directa a Google Apps Script -->
-    <iframe 
-        src="https://script.google.com/macros/s/AKfycbwUfwojpxaY23eVyOUfGzwzyntaEfTiWAzPMSiH2BgzQyiB6ARMLIvShke1ZcILy_sUaA/exec" 
-        allow="fullscreen; clipboard-read; clipboard-write" 
-        title="Interplanet KDS">
-    </iframe>
-
-    <!-- Activación del Service Worker para funcionamiento PWA/Instalable -->
     <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js')
-                    .then(registration => {
-                        console.log('ServiceWorker registrado con éxito');
-                    })
-                    .catch(err => {
-                        console.error('Fallo al registrar el ServiceWorker: ', err);
-                    });
-            });
-        }
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('sw.js')
+            .then(() => console.log('PWA IP-RECARGAS: Lista'))
+            .catch(err => console.log('Error:', err));
+        });
+      }
     </script>
-
 </body>
 </html>
