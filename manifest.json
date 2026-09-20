@@ -1,6 +1,6 @@
 {
-  "name": "IP Recargas",
-  "short_name": "IP Recargas",
+  "name": "IP FILE",
+  "short_name": "IP FILE",
   "description": "Sistema de Gestión Interplanet",
   "start_url": "index.html",
   "display": "standalone",
