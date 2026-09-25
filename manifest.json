@@ -1,7 +1,7 @@
 {
-  "name": "IP FILE",
-  "short_name": "IP FILE",
-  "description": "Sistema de Gestión Interplanet",
+  "name": "INTERPLANET",
+  "short_name": "INTERPLANET",
+  "description": "Sistema de Gestión",
   "start_url": "index.html",
   "display": "standalone",
   "orientation": "portrait",
